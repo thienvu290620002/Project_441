@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Orders from './src/screens/Orders';
 import Blog from './src/screens/Blog';
 import Profile from './src/screens/Profile';
+import ShowProduct from './src/screens/ShowProduct';
 
 const Stack = createNativeStackNavigator();
 
@@ -61,6 +62,11 @@ const App = () => {
         <Stack.Screen 
           name="Profile" 
           component={Profile}
+          options={{headerShown: true}}
+        />
+        <Stack.Screen 
+          name="ShowProduct" 
+          component={ShowProduct}
           options={{headerShown: true}}
         />
       </Stack.Navigator>

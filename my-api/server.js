@@ -23,7 +23,8 @@ const products = [
         "flavor_profile": ["Dark Chocolate", "Black Cherry"],
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 3,
-        "image_url": "http://10.0.2.2:3000/images/pic1.png"
+        "image_url": "http://10.0.2.2:3000/images/pic1.png",
+        "category": "Drink"
     },
     {
         "_id": "6424338559f9f6fdd657d2e2",
@@ -37,7 +38,8 @@ const products = [
         "flavor_profile": ["Citrus"],
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 2,
-        "image_url": "http://10.0.2.2:3000/images/pic2.png"
+        "image_url": "http://10.0.2.2:3000/images/pic2.png",
+        "category": "Drink"
     },
     {
         "_id": "6424338959f9f6fdd657d2e3",
@@ -51,7 +53,8 @@ const products = [
         "flavor_profile": ["Toasted Nuts", "Caramel"],
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 2,
-        "image_url": "http://10.0.2.2:3000/images/pic3.png"
+        "image_url": "http://10.0.2.2:3000/images/pic3.png",
+        "category": "Drink"
     },
     {
         "_id": "6424338959f9f6fdd657d2e4",
@@ -65,7 +68,8 @@ const products = [
         "flavor_profile": ["Chocolate", "Caramel", "Fruit"],
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 2,
-        "image_url": "http://10.0.2.2:3000/images/pic4.png"
+        "image_url": "http://10.0.2.2:3000/images/pic4.png",
+        "category": "Drink"
     },
     {
         "_id": "6424338959f9f6fdd657d2e5",
@@ -79,7 +83,8 @@ const products = [
         "flavor_profile": ["Jasmine", "Bergamot"],
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 1,
-        "image_url": "http://10.0.2.2:3000/images/pic5.png"
+        "image_url": "http://10.0.2.2:3000/images/pic5.png",
+        "category": "Drink"
     },
     {
         "_id": "6424338959f9f6fdd657d2e6",
@@ -93,7 +98,8 @@ const products = [
         "flavor_profile": ["Earthy", "Rich"],
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 3,
-        "image_url": "http://10.0.2.2:3000/images/pic6.png"
+        "image_url": "http://10.0.2.2:3000/images/pic6.png",
+        "category": "Drink"
     },
     {
         "_id": "642d3d8719341833719cd68f",
@@ -107,7 +113,8 @@ const products = [
         "flavor_profile": ["Smoky", "Bold"],
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 4,
-        "image_url": "http://10.0.2.2:3000/images/pic7.png"
+        "image_url": "http://10.0.2.2:3000/images/pic7.png",
+        "category": "Drink"
     },
     {
         "_id": "642d3d8719341833719cd68g",
@@ -121,7 +128,8 @@ const products = [
         "flavor_profile": ["Vanilla", "Hazelnut"],
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 2,
-        "image_url": "http://10.0.2.2:3000/images/pic8.png"
+        "image_url": "http://10.0.2.2:3000/images/pic8.png",
+        "category": "Drink"
     },
     {
         "_id": "642d3d8719341833719cd68h",
@@ -135,7 +143,8 @@ const products = [
         "flavor_profile": ["Cinnamon", "Spices"],
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 2,
-        "image_url": "http://10.0.2.2:3000/images/pic9.png"
+        "image_url": "http://10.0.2.2:3000/images/pic9.png",
+        "category": "Drink"
     },
     {
         "_id": "642d3d8719341833719cd68i",
@@ -149,7 +158,8 @@ const products = [
         "flavor_profile": ["Chocolate", "Rich"],
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 3,
-        "image_url": "http://10.0.2.2:3000/images/pic10.png"
+        "image_url": "http://10.0.2.2:3000/images/pic10.png",
+        "category": "Drink"
     },
     {
         "_id": "642d3d8719341833719cd68j",
@@ -163,7 +173,8 @@ const products = [
         "flavor_profile": ["Smooth", "Mellow"],
         "grind_option": ["Coarse Grind"],
         "roast_level": 2,
-        "image_url": "http://10.0.2.2:3000/images/pic11.png"
+        "image_url": "http://10.0.2.2:3000/images/pic11.png",
+         "category": "Drink"
     },
     {
         "_id": "642d3d8719341833719cd68k",
@@ -177,7 +188,8 @@ const products = [
         "flavor_profile": ["Rich", "Smooth"],
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 2,
-        "image_url": "http://10.0.2.2:3000/images/pic12.png"
+        "image_url": "http://10.0.2.2:3000/images/pic12.png",
+        "category": "Drink"
     },
     {
         "_id": "642d3d8719341833719cd68l",
@@ -191,7 +203,8 @@ const products = [
         "flavor_profile": ["Delicious", "Flavorful"],
         "grind_option": ["Seafood Pizza", "Oringinal Pizza", "Spicy Pizza", "Cheese Pizza"],
         "roast_level": 2,
-        "image_url": "http://10.0.2.2:3000/images/pic13.png"
+        "image_url": "http://10.0.2.2:3000/images/pic13.png",
+        "category": "Pizza"
     },
     {
         "_id": "642d3d8719341833719cd68m",
@@ -205,7 +218,8 @@ const products = [
         "flavor_profile": ["Delicious", "BigSize"],
         "grind_option": ["Chicken Hamburger", "Oringinal Hamburger", "Beef Hamburger", "Cheese Hamburger"],
         "roast_level": 2,
-        "image_url": "http://10.0.2.2:3000/images/pic14.png"
+        "image_url": "http://10.0.2.2:3000/images/pic14.png",
+        "category": "Food"
     },
     {
         "_id": "642d3d8719341833719cd68n",
@@ -219,7 +233,8 @@ const products = [
         "flavor_profile": ["Delicious", "Sweety"],
         "grind_option": ["Bumpy Cake", "Sand Cake", "Plain Cake", "Chocolate Cake"],
         "roast_level": 2,
-        "image_url": "http://10.0.2.2:3000/images/pic15.png"
+        "image_url": "http://10.0.2.2:3000/images/pic15.png",
+         "category": "Food"
     },
     {
         "_id": "642d3d8719341833719cd68o",
@@ -233,7 +248,8 @@ const products = [
         "flavor_profile": ["Delicious", "Spicy"],
         "grind_option": ["Original Banh Mi", "Roast Pork Banh Mi", "Beef Banh Mi", "Stick Banh Mi"],
         "roast_level": 2,
-        "image_url": "http://10.0.2.2:3000/images/pic16.png"
+        "image_url": "http://10.0.2.2:3000/images/pic16.png",
+         "category": "Food"
     },
     {
         "_id": "642d3d8719341833719cd68o",
@@ -247,7 +263,8 @@ const products = [
         "flavor_profile": ["Delicious", "Rich"],
         "grind_option": ["Original Pho", "Speacial Pho"],
         "roast_level": 2,
-        "image_url": "http://10.0.2.2:3000/images/pic17.png"
+        "image_url": "http://10.0.2.2:3000/images/pic17.png",
+         "category": "Food"
     },
     {
         "_id": "642d3d8719341833719cd68p",
@@ -261,7 +278,8 @@ const products = [
         "flavor_profile": ["Rich", "Smooth"],
         "grind_option": ["Original Spagetti", "Speacial Spagetti"],
         "roast_level": 2,
-        "image_url": "http://10.0.2.2:3000/images/pic18.png"
+        "image_url": "http://10.0.2.2:3000/images/pic18.png",
+         "category": "Food"
     },
     {
         "_id": "642d3d8719341833719cd68q",
@@ -275,7 +293,8 @@ const products = [
         "flavor_profile": ["Fragrant", "Tasty"],
         "grind_option": ["Original Chicken", "Spicy Chicken","Fried Chicken(Fish Sauce)"],
         "roast_level": 2,
-        "image_url": "http://10.0.2.2:3000/images/pic19.png"
+        "image_url": "http://10.0.2.2:3000/images/pic19.png",
+         "category": "Food"
     },
     {
         "_id": "642d3d8719341833719cd68r",
@@ -289,8 +308,68 @@ const products = [
         "flavor_profile": ["Rich", "Delicious"],
         "grind_option": ["Original Pan Cake", "Strawberry Pan Cake","Honey Pan Cake"],
         "roast_level": 2,
-        "image_url": "http://10.0.2.2:3000/images/pic20.png"
-    }
+        "image_url": "http://10.0.2.2:3000/images/pic20.png",
+         "category": "Food"
+    },
+    {
+        "_id": "642d3d8719341833719cd68s",
+        "id": 21,
+        "name": "Pepsi",
+        "description": "A popular softdrink",
+        "price": 5.99,
+        "originalPrice": 6,
+        "region": "VietNam",
+        "weight": 500,
+        "flavor_profile": ["Sweety", "Gas"],
+        "grind_option": ["Original Pepsi"," No Sugar Pepsi"],
+        "roast_level": 2,
+        "image_url": "http://10.0.2.2:3000/images/pic21.png",
+         "category": "Beverages"
+    },{
+        "_id": "642d3d8719341833719cd68t",
+        "id": 22,
+        "name": "Coca-cola",
+        "description": "A popular softdrink",
+        "price": 5.99,
+        "originalPrice": 6,
+        "region": "VietNam",
+        "weight": 500,
+        "flavor_profile": ["Sweety", "Gas"],
+        "grind_option": ["Original Coca-cola"," No Sugar Coca-cola"],
+        "roast_level": 2,
+        "image_url": "http://10.0.2.2:3000/images/pic22.png",
+         "category": "Beverages"
+    },{
+        "_id": "642d3d8719341833719cd68u",
+        "id": 23,
+        "name": "Bottled Water",
+        "description": "A popular softdrink",
+        "price": 2.99,
+        "originalPrice": 4,
+        "region": "VietNam",
+        "weight": 500,
+        "flavor_profile": ["Fesher", "Gas"],
+        "grind_option": ["Aquafina Water","Biconsi Water"],
+        "roast_level": 2,
+        "image_url": "http://10.0.2.2:3000/images/pic23.png",
+         "category": "Beverages"
+    },
+    {
+        "_id": "642d3d8719341833719cd68v",
+        "id": 24,
+        "name": "RedBull",
+        "description": "A popular softdrink",
+        "price": 2.99,
+        "originalPrice": 4,
+        "region": "VietNam",
+        "weight": 500,
+        "flavor_profile": ["Fesher", "Gas"],
+        "grind_option": ["Original RedBull","Energy RedBull"],
+        "roast_level": 2,
+        "image_url": "http://10.0.2.2:3000/images/pic20.png",
+         "category": "Beverages"
+    },
+    
 ];
 
 // User data
@@ -300,7 +379,8 @@ const users = [
         password: 'password1',
 	phone: '0123456789',
 	gmail: 'user1@gmail.com',
-	address: '123 Thu Dau Mot, Binh Duong'
+	address: '123 Thu Dau Mot, Binh Duong',
+	avatar_url: 'http://10.0.2.2:3000/images/avatar.jpg'
     },
     {
         username: 'user2',
@@ -436,6 +516,10 @@ app.get('/api/blogs', (req, res) => {
     res.json(blogs);
 });
 
+const jwt = require('jsonwebtoken'); // Import jsonwebtoken
+
+// Secret key for signing the JWT
+const JWT_SECRET = 'abcxyz123456';
 // Route to handle user login
 app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
@@ -445,7 +529,10 @@ app.post('/api/login', (req, res) => {
         return res.status(401).send('Invalid username or password.');
     }
 
-    res.json({ message: 'Login successful!', user: { username: user.username } });
+    // Generate a JWT token
+    const token = jwt.sign({ username: user.username }, JWT_SECRET, { expiresIn: '1h' }); // Token expires in 1 hour
+
+    res.json({ message: 'Login successful!', token }); // Return the token
 });
 
 // Route to get all users

@@ -7,25 +7,39 @@ import Menu from './Menu';
 const Home = ({navigation}) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [products, setProducts] = useState([]);
-    const [visibleProductsCount, setVisibleProductsCount] = useState(4); // State to manage the number of visible products
+    const [visibleProductsCount, setVisibleProductsCount] = useState(4);
+    const [userName, setUserName] = useState('');
 
-    // Fetch data from API
     useEffect(() => {
-        fetch('http://10.0.2.2:3000/api/products')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // console.log('Data received:', data);
-                setProducts(data); // Store the fetched data in state
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
-    }, []);
+        const fetchUserData = async () => {
+          try {
+            const response = await fetch('http://10.0.2.2:3000/api/users');
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            setUserName(data[0].username); // Set the user's name
+          } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+          }
+        };
+    
+        const fetchProducts = async () => {
+          try {
+            const response = await fetch('http://10.0.2.2:3000/api/products');
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            setProducts(data); // Store the fetched data in state
+          } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+          }
+        };
+    
+        fetchUserData();
+        fetchProducts();
+      }, []);
 
     const showMenu = () => {
         setIsMenuOpen(true);
@@ -43,16 +57,36 @@ const Home = ({navigation}) => {
         setVisibleProductsCount(prevCount => prevCount + 4); // Increase the number of visible products by 4
     };
 
+    const categoryCounts = products.reduce((acc, product) => {
+        acc[product.category] = (acc[product.category] || 0) + 1;
+        return acc;
+    }, {});
+
+    const handleMenu = (category) => {
+        navigation.navigate('ShowProduct', { category });
+    };
+
+    const getGreeting = () => {
+        const hours = new Date().getHours();
+        if (hours < 12) {
+          return 'Good Morning';
+        } else if (hours < 18) {
+          return 'Good Afternoon';
+        } else {
+          return 'Good Evening';
+        }
+      };
+
   return (
     <ScrollView>
         <View style={{marginLeft: 20,marginRight: 20}}>
         {/* block menu left */}
         {isMenuOpen && <Menu onClose={handleClose} navigation={navigation} />} {/* Sử dụng Menu component */}
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <View>
-                        <Text style={{ color: 'black' }}>Good Morning</Text>
-                        <Text style={{ color: 'black', fontWeight: 'bold' }}>Vu Dep Trai</Text>
-                    </View>
+                <View>
+            <Text style={{ color: 'black' }}>{getGreeting()}</Text>
+            <Text style={{ color: 'black', fontWeight: 'bold' }}>{userName}</Text>
+          </View>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Button onPress={showCart}>
                             <Icon name="shopping-cart" size={20} color="#04764e" />
@@ -110,11 +144,13 @@ const Home = ({navigation}) => {
                     <View style={{backgroundColor: 'white',flexDirection: 'row',borderStyle: 'solid',borderColor: '#efefef',borderWidth: 1,width: '45%',borderRadius: 10,padding: 10,alignItems: 'center'}}>
                         <Image source={require('../images/icon1.png')} />
                         <View>
+                        <TouchableOpacity onPress={() => handleMenu('Beverages')}>
                             <Text style={{color: 'black',fontWeight: 'bold'}}>
                                 Beverages
                             </Text>
-                            <Text style={{color: '#04764e',fontWeight: '500'}}>
-                                67 Menus
+                        </TouchableOpacity>
+                            <Text style={{color: '#04764e', fontWeight: '500'}}>
+                                {categoryCounts['Beverages'] || 0} Menus
                             </Text>
                         </View>
                     </View>
@@ -123,11 +159,13 @@ const Home = ({navigation}) => {
                     <View style={{backgroundColor: 'white',flexDirection: 'row',borderStyle: 'solid',borderColor: '#efefef',borderWidth: 1,width: '45%',borderRadius: 10,padding: 10,alignItems: 'center'}}>
                         <Image source={require('../images/icon2.png')} />
                         <View>
-                            <Text style={{color: 'black',fontWeight: 'bold'}}>
-                                Food
-                            </Text>
-                            <Text style={{color: '#04764e',fontWeight: '500'}}>
-                                23 Menus
+                            <TouchableOpacity onPress={() => handleMenu('Food')}>
+                                <Text style={{color: 'black',fontWeight: 'bold'}}>
+                                    Food
+                                </Text>
+                            </TouchableOpacity>
+                            <Text style={{color: '#04764e', fontWeight: '500'}}>
+                                {categoryCounts['Food'] || 0} Menus
                             </Text>
                         </View>
                     </View>
@@ -139,11 +177,13 @@ const Home = ({navigation}) => {
                     <View style={{backgroundColor: 'white',flexDirection: 'row',borderStyle: 'solid',borderColor: '#efefef',borderWidth: 1,width: '45%',borderRadius: 10,padding: 10,alignItems: 'center'}}>
                         <Image source={require('../images/icon3.png')} />
                         <View>
-                            <Text style={{color: 'black',fontWeight: 'bold'}}>
-                                Pizza
-                            </Text>
-                            <Text style={{color: '#04764e',fontWeight: '500'}}>
-                                28 Menus
+                            <TouchableOpacity onPress={() => handleMenu('Pizza')}>
+                                <Text style={{color: 'black',fontWeight: 'bold'}}>
+                                    Pizza
+                                </Text>
+                            </TouchableOpacity>
+                            <Text style={{color: '#04764e', fontWeight: '500'}}>
+                                {categoryCounts['Pizza'] || 0} Menus
                             </Text>
                         </View>
                     </View>
@@ -152,11 +192,13 @@ const Home = ({navigation}) => {
                     <View style={{backgroundColor: 'white',flexDirection: 'row',borderStyle: 'solid',borderColor: '#efefef',borderWidth: 1,width: '45%',borderRadius: 10,padding: 10,alignItems: 'center'}}>
                         <Image source={require('../images/icon4.png')} />
                         <View>
-                            <Text style={{color: 'black',fontWeight: 'bold'}}>
-                                Drink
-                            </Text>
-                            <Text style={{color: '#04764e',fontWeight: '500'}}>
-                                12 Menus
+                            <TouchableOpacity onPress={() => handleMenu('Drink')}>
+                                <Text style={{color: 'black',fontWeight: 'bold'}}>
+                                    Drink
+                                </Text>
+                            </TouchableOpacity>
+                            <Text style={{color: '#04764e', fontWeight: '500'}}>
+                                {categoryCounts['Drink'] || 0} Menus
                             </Text>
                         </View>
                     </View>
