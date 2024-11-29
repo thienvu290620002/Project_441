@@ -12,7 +12,7 @@ import Orders from './src/screens/Orders';
 import Blog from './src/screens/Blog';
 import Profile from './src/screens/Profile';
 import ShowProduct from './src/screens/ShowProduct';
-
+import Rewards from './src/screens/Rewards';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -57,6 +57,11 @@ const App = () => {
         <Stack.Screen 
           name="Blog" 
           component={Blog}
+          options={{headerShown: true}}
+        />
+          <Stack.Screen 
+          name="Rewards" 
+          component={Rewards}
           options={{headerShown: true}}
         />
         <Stack.Screen 

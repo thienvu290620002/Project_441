@@ -24,7 +24,9 @@ const products = [
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 3,
         "image_url": "http://10.0.2.2:3000/images/pic1.png",
-        "category": "Drink"
+        "category": "Drink",
+       "rate":0,
+        "numVoted": 0
     },
     {
         "_id": "6424338559f9f6fdd657d2e2",
@@ -39,7 +41,9 @@ const products = [
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic2.png",
-        "category": "Drink"
+        "category": "Drink",
+        "rate":0,
+        "numVoted": 0
     },
     {
         "_id": "6424338959f9f6fdd657d2e3",
@@ -54,7 +58,9 @@ const products = [
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic3.png",
-        "category": "Drink"
+        "category": "Drink",
+       "rate":0,
+        "numVoted": 0
     },
     {
         "_id": "6424338959f9f6fdd657d2e4",
@@ -69,7 +75,10 @@ const products = [
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic4.png",
-        "category": "Drink"
+        "category": "Drink",
+       "rate":0,
+        "numVoted": 0
+
     },
     {
         "_id": "6424338959f9f6fdd657d2e5",
@@ -84,7 +93,9 @@ const products = [
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 1,
         "image_url": "http://10.0.2.2:3000/images/pic5.png",
-        "category": "Drink"
+        "category": "Drink",
+       "rate":0,
+        "numVoted": 0
     },
     {
         "_id": "6424338959f9f6fdd657d2e6",
@@ -99,7 +110,9 @@ const products = [
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 3,
         "image_url": "http://10.0.2.2:3000/images/pic6.png",
-        "category": "Drink"
+        "category": "Drink",
+        "rate":0,
+        "numVoted": 0
     },
     {
         "_id": "642d3d8719341833719cd68f",
@@ -114,7 +127,9 @@ const products = [
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 4,
         "image_url": "http://10.0.2.2:3000/images/pic7.png",
-        "category": "Drink"
+        "category": "Drink",
+        "rate":0,
+        "numVoted": 0
     },
     {
         "_id": "642d3d8719341833719cd68g",
@@ -129,7 +144,9 @@ const products = [
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic8.png",
-        "category": "Drink"
+        "category": "Drink",
+      "rate":0,
+        "numVoted": 0
     },
     {
         "_id": "642d3d8719341833719cd68h",
@@ -144,7 +161,9 @@ const products = [
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic9.png",
-        "category": "Drink"
+        "category": "Drink",
+       "rate":0,
+        "numVoted": 0
     },
     {
         "_id": "642d3d8719341833719cd68i",
@@ -159,7 +178,9 @@ const products = [
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 3,
         "image_url": "http://10.0.2.2:3000/images/pic10.png",
-        "category": "Drink"
+        "category": "Drink",
+       "rate":0,
+        "numVoted": 0
     },
     {
         "_id": "642d3d8719341833719cd68j",
@@ -174,7 +195,9 @@ const products = [
         "grind_option": ["Coarse Grind"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic11.png",
-         "category": "Drink"
+         "category": "Drink",
+         "rate":0,
+         "numVoted": 0
     },
     {
         "_id": "642d3d8719341833719cd68k",
@@ -189,7 +212,9 @@ const products = [
         "grind_option": ["Whole Bean", "Cafetiere", "Filter", "Espresso"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic12.png",
-        "category": "Drink"
+        "category": "Drink",
+        "rate":0,
+        "numVoted": 0
     },
     {
         "_id": "642d3d8719341833719cd68l",
@@ -204,7 +229,9 @@ const products = [
         "grind_option": ["Seafood Pizza", "Oringinal Pizza", "Spicy Pizza", "Cheese Pizza"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic13.png",
-        "category": "Pizza"
+        "category": "Pizza",
+        "rate":0,
+        "numVoted": 0
     },
     {
         "_id": "642d3d8719341833719cd68m",
@@ -219,7 +246,9 @@ const products = [
         "grind_option": ["Chicken Hamburger", "Oringinal Hamburger", "Beef Hamburger", "Cheese Hamburger"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic14.png",
-        "category": "Food"
+        "category": "Food",
+       "rate":0,
+        "numVoted": 0
     },
     {
         "_id": "642d3d8719341833719cd68n",
@@ -234,7 +263,9 @@ const products = [
         "grind_option": ["Bumpy Cake", "Sand Cake", "Plain Cake", "Chocolate Cake"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic15.png",
-         "category": "Food"
+         "category": "Food",
+         "rate":0,
+         "numVoted": 0
     },
     {
         "_id": "642d3d8719341833719cd68o",
@@ -249,7 +280,9 @@ const products = [
         "grind_option": ["Original Banh Mi", "Roast Pork Banh Mi", "Beef Banh Mi", "Stick Banh Mi"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic16.png",
-         "category": "Food"
+         "category": "Food",
+         "rate":0,
+         "numVoted": 0
     },
     {
         "_id": "642d3d8719341833719cd68o",
@@ -264,7 +297,9 @@ const products = [
         "grind_option": ["Original Pho", "Speacial Pho"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic17.png",
-         "category": "Food"
+         "category": "Food",
+        "rate":0,
+         "numVoted": 0
     },
     {
         "_id": "642d3d8719341833719cd68p",
@@ -279,7 +314,9 @@ const products = [
         "grind_option": ["Original Spagetti", "Speacial Spagetti"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic18.png",
-         "category": "Food"
+         "category": "Food",
+        "rate":0,
+         "numVoted": 0
     },
     {
         "_id": "642d3d8719341833719cd68q",
@@ -294,7 +331,9 @@ const products = [
         "grind_option": ["Original Chicken", "Spicy Chicken","Fried Chicken(Fish Sauce)"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic19.png",
-         "category": "Food"
+         "category": "Food",
+         "rate":0,
+         "numVoted": 0
     },
     {
         "_id": "642d3d8719341833719cd68r",
@@ -309,7 +348,9 @@ const products = [
         "grind_option": ["Original Pan Cake", "Strawberry Pan Cake","Honey Pan Cake"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic20.png",
-         "category": "Food"
+         "category": "Food",
+        "rate":0,
+         "numVoted": 0
     },
     {
         "_id": "642d3d8719341833719cd68s",
@@ -324,7 +365,9 @@ const products = [
         "grind_option": ["Original Pepsi"," No Sugar Pepsi"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic21.png",
-         "category": "Beverages"
+         "category": "Beverages",
+        "rate":0,
+         "numVoted": 0
     },{
         "_id": "642d3d8719341833719cd68t",
         "id": 22,
@@ -338,7 +381,9 @@ const products = [
         "grind_option": ["Original Coca-cola"," No Sugar Coca-cola"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic22.png",
-         "category": "Beverages"
+         "category": "Beverages",
+        "rate":0,
+         "numVoted": 0
     },{
         "_id": "642d3d8719341833719cd68u",
         "id": 23,
@@ -352,7 +397,9 @@ const products = [
         "grind_option": ["Aquafina Water","Biconsi Water"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic23.png",
-         "category": "Beverages"
+         "category": "Beverages",
+         "rate":0,
+         "numVoted": 0
     },
     {
         "_id": "642d3d8719341833719cd68v",
@@ -367,7 +414,9 @@ const products = [
         "grind_option": ["Original RedBull","Energy RedBull"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic20.png",
-         "category": "Beverages"
+         "category": "Beverages",
+         "rate":0,
+         "numVoted": 0
     },
     
 ];
@@ -592,4 +641,31 @@ app.get('/api/orders', (req, res) => {
 // Start server
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
+});
+
+// Endpoint to handle product ratings submission
+app.post('/api/products/:id/rate', (req, res) => {
+    const productId = req.params.id;
+    const { rating } = req.body;  // Expecting a rating between 1 and 5
+
+    if (rating < 1 || rating > 5) {
+        return res.status(400).json({ error: 'Rating must be between 1 and 5' });
+    }
+
+    const product = products.find(p => p.id === parseInt(productId));
+    if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+    }
+
+    // Update the product's rating and numVoted
+    product.numVoted += 1;
+    product.rate = ((product.rate * (product.numVoted - 1)) + rating) / product.numVoted;
+
+    res.json({
+        message: 'Rating submitted successfully',
+        product: product
+    });
+});
+app.get('/api/products', (req, res) => {
+    res.json(products);
 });
