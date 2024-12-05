@@ -220,7 +220,7 @@ const Home = ({navigation}) => {
                             style={{width: 80,height: 80,borderRadius: 10}}
                         />
                         <Text style={{position: 'absolute',top: 65,backgroundColor: '#ff8730',borderRadius: 15,padding: 3,color: 'white',fontWeight: 'bold'}}>
-                            3.8 Stars
+                            3.8 ★
                         </Text>
                     </View>
                     <View style={{marginLeft: 10}}>
@@ -241,7 +241,7 @@ const Home = ({navigation}) => {
                             style={{width: 80,height: 80,borderRadius: 10}}
                         />
                         <Text style={{position: 'absolute',top: 65,backgroundColor: '#ff8730',borderRadius: 15,padding: 3,color: 'white',fontWeight: 'bold'}}>
-                            4.5 Stars
+                            4.5 ★
                         </Text>
                     </View>
                     <View style={{marginLeft: 10}}>
@@ -261,7 +261,7 @@ const Home = ({navigation}) => {
                             style={{width: 80,height: 80,borderRadius: 10}}
                         />
                         <Text style={{position: 'absolute',top: 65,backgroundColor: '#ff8730',borderRadius: 15,padding: 3,color: 'white',fontWeight: 'bold'}}>
-                            3.8 Stars
+                            3.8 ★
                         </Text>
                     </View>
                     <View style={{marginLeft: 10}}>

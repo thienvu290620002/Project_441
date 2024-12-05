@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
-import { Button } from 'react-native-paper';
+import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
+import {Button} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../style'; // Điều chỉnh đường dẫn nếu cần
 
@@ -56,7 +56,7 @@ const Menu = ({ onClose, navigation }) => {
                         <Text>Store Location</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate("Rewards")}>
+                <TouchableOpacity onPress={() => Alert.alert("Rewards")}>
                     <View style={{ flexDirection: 'row', marginBottom: 35 }}>
                         <Icon name="grade" size={18} />
                         <Text>Rewards</Text>

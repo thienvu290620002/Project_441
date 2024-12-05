@@ -12,8 +12,12 @@ import Orders from './src/screens/Orders';
 import Blog from './src/screens/Blog';
 import Profile from './src/screens/Profile';
 import ShowProduct from './src/screens/ShowProduct';
+<<<<<<< HEAD
 import Rewards from './src/screens/Reward';
 
+=======
+import Rewards from './src/screens/Rewards';
+>>>>>>> 3ed4e3a1399df2085b6ce52629ec4b8f92996150
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -58,6 +62,11 @@ const App = () => {
         <Stack.Screen 
           name="Blog" 
           component={Blog}
+          options={{headerShown: true}}
+        />
+          <Stack.Screen 
+          name="Rewards" 
+          component={Rewards}
           options={{headerShown: true}}
         />
         <Stack.Screen 
