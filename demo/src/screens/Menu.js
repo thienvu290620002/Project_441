@@ -56,7 +56,7 @@ const Menu = ({ onClose, navigation }) => {
                         <Text>Store Location</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => Alert.alert("Rewards")}>
+                <TouchableOpacity onPress={() => navigation.navigate("Rewards")}>
                     <View style={{ flexDirection: 'row', marginBottom: 35 }}>
                         <Icon name="grade" size={18} />
                         <Text>Rewards</Text>
