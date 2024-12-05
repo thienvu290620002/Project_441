@@ -1,23 +1,32 @@
+// import React, { useEffect, useState } from 'react';
+// import {
+//   View,
+//   Text,
+//   Image,
+//   StyleSheet,
+//   Alert,
+//   TouchableOpacity,
+//   TextInput,
+//   ActivityIndicator,
+// } from 'react-native';
+// import { Picker } from '@react-native-picker/picker'; // Import the Picker
+// import { useNavigation } from '@react-navigation/native';
 
-// import React, {useEffect, useState} from 'react';
-// import {View, Text, Image, StyleSheet, Alert, TouchableOpacity, TextInput} from 'react-native';
-
-// const Rewards = ({route}) => {
-//   const {productId} = route.params || {productId: 22}; // Default for testing
+// const Rewards = () => {
+//   const navigation = useNavigation();
+//   const [products, setProducts] = useState([]); // State to hold the list of products
+//   const [selectedProductId, setSelectedProductId] = useState(null); // State for selected product
 //   const [product, setProduct] = useState(null);
-//   const [rating, setRating] = useState(0); // Initialize rating state here
+//   const [rating, setRating] = useState(0);
 //   const [feedback, setFeedback] = useState('');
 
-//   const fetchProduct = async () => {
+//   const fetchProducts = async () => {
 //     try {
 //       const response = await fetch('http://10.0.2.2:3000/api/products');
 //       if (response.ok) {
 //         const data = await response.json();
-//         const selectedProduct =
-//           data.find(product => product.id === productId) || data[1];
-//         setProduct(selectedProduct);
-//         console.log(data);
-        
+//         setProducts(data); // Set the products state
+//         setSelectedProductId(data[0]?.id); // Set the default selected product
 //       } else {
 //         Alert.alert('Error', 'Failed to fetch product data');
 //       }
@@ -27,79 +36,128 @@
 //     }
 //   };
 
-//   // Render stars based on the rating value
+//   const fetchProduct = async (productId) => {
+//     try {
+//       const response = await fetch(`http://10.0.2.2:3000/api/products/${productId}`);
+//       if (response.ok) {
+//         const data = await response.json();
+//         setProduct(data);
+//       } else {
+//         Alert.alert('Error', 'Failed to fetch product data');
+//       }
+//     } catch (error) {
+//       Alert.alert('Error', 'An error occurred while fetching product data');
+//       console.error(error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchProducts(); // Fetch products when component mounts
+//   }, []);
+
+//   useEffect(() => {
+//     if (selectedProductId) {
+//       fetchProduct(selectedProductId); // Fetch product details when selected product changes
+//     }
+//   }, [selectedProductId]);
+
 //   const renderStars = () => {
 //     let stars = [];
 //     for (let i = 1; i <= 5; i++) {
 //       stars.push(
 //         <TouchableOpacity key={i} onPress={() => setRating(i)}>
-//           <Text style={[styles.star, { color: i <= rating ? '#FFD700' : '#ccc' }]}>★</Text>
+//           <Text style={[styles.star, { color: i <= rating ? '#FFD700' : '#ccc' }]}>
+//             ★
+//           </Text>
 //         </TouchableOpacity>
 //       );
 //     }
 //     return stars;
 //   };
-//  // Handle the "Send" button click
-//  const handleSendFeedback = async () => {
-//   if (!feedback.trim()) {
-//     Alert.alert('Error', 'Please enter some feedback');
-//     return;
-//   }
 
-//   // Calculate the new rate and numVoted
-//   const newRate = product.rate + rating;  // Add the new rating to the current rate
-// const newNumVoted = product.numVoted + 1;  // Increment numVoted by 1
+//   const handleSendFeedback = async () => {
+//     if (rating === 0) {
+//       Alert.alert('Please select a rating');
+//       return;
+//     }
+//     if (!feedback.trim()) {
+//       Alert.alert('Please enter some feedback');
+//       return;
+//     }
 
-//   // Calculate the average rating
-//   const averageRating = newRate / newNumVoted;
+//     const newRate = product.rate + rating;
+//     const newNumVoted = product.numVoted + 1;
+//     const averageRating = newRate / newNumVoted;
 
-//   // Simulate sending feedback and updating the number of votes and rate
-//   try {
-//     const updatedProduct = { 
-//       ...product, 
-//       numVoted: newNumVoted, 
+//     const updatedProduct = {
+//       ...product,
+//       numVoted: newNumVoted,
 //       rate: newRate,
-//       averageRating: averageRating.toFixed(1)  // Store the average rating rounded to 1 decimal place
+//       averageRating: averageRating.toFixed(1),
 //     };
 
-//     setProduct(updatedProduct); // Update local product data
+//     setProduct(updatedProduct);
+//     navigation.navigate("Blog");
+//     Alert.alert('Thank You', 'Your feedback has been submitted.');
+    
+//     // Call backend to submit feedback
+//     await sendFeedbackToBackend();
+//   };
 
-//     // Show thank you alert
-//     Alert.alert('Thank You', 'Your feedback has been submitted.')
-
-//   } catch (error) {
-//     Alert.alert('Please give me some feedback');
-//     console.error(error);
-//   }
-// };
-//   useEffect(() => {
-//     fetchProduct(); // Fetch product data when component mounts
-//   }, [productId]);
-  
+//   const sendFeedbackToBackend = async () => {
+//     try {
+//       await fetch(`http://10.0.2.2:3000/api/products/${selectedProductId}/rate`, {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({
+//           rating,
+//           feedback,
+//         }),
+//       });
+//     } catch (error) {
+//       console.error('Error submitting feedback:', error);
+//     }
+//   };
 
 //   if (!product) {
-//     return <Text>Loading...</Text>; // Show loading while fetching data
+//     return (
+//       <View style={styles.container}>
+//         <ActivityIndicator size="large" color="#0000 ff" />
+//       </View>
+//     );
 //   }
 
 //   return (
 //     <View style={styles.container}>
-    
-//         {product.image_url && (
-//           <Image source={{uri: product.image_url}} style={styles.image} />
-//         )}
-//         <Text style={styles.name}>{product.name}</Text>
-     
+//       <View style={styles.pickerContainer}>
+//   <Picker
+//     selectedValue={selectedProductId}
+//     onValueChange={(itemValue) => setSelectedProductId(itemValue)}
+//     style={styles.picker}
+//   >
+//     {products.map((prod) => (
+//       <Picker.Item key={prod.id} label={prod.name} value={prod.id} />
+//     ))}
+//   </Picker>
+// </View>
+
+//       {product.image_url && (
+//         <Image source={{ uri: product.image_url }} style={styles.image} />
+//       )}
+//       <Text style={styles.name}>{product.name}</Text>
+
 //       <View style={styles.ratingContainer}>
 //         {renderStars()} {/* Render the stars */}
-       
 //       </View>
 //       <Text style={styles.feedbackText}>
-//        {rating} Star{rating > 1 ? 's' : ''} {/* Show selected rating */}
-//         </Text>
-     
+//         {rating} Star{rating > 1 ? 's' : ''}
+//       </Text>
+
 //       <View>
 //         <Text style={styles.rate}>
-//         Average Rating: {product.averageRating || '0'} ({product.numVoted} votes)
+//           Average Rating: {product.averageRating || '0'} ({product.numVoted} votes)
 //         </Text>
 //       </View>
 //       <View style={styles.feedbackContainer}>
@@ -111,7 +169,11 @@
 //         />
 //       </View>
 //       {/* "Send" Button */}
-//       <TouchableOpacity style={styles.sendButton} onPress={handleSendFeedback}>
+//       <TouchableOpacity
+//         style={styles.sendButton}
+//         onPress={handleSendFeedback}
+//         accessibilityLabel="Submit feedback"
+//       >
 //         <Text style={styles.sendButtonText}>Send</Text>
 //       </TouchableOpacity>
 //     </View>
@@ -141,8 +203,6 @@
 //   ratingContainer: {
 //     flexDirection: 'row',
 //     marginBottom: 20,
-
-
 //   },
 //   star: {
 //     fontSize: 30,
@@ -150,10 +210,9 @@
 //   },
 //   rate: {
 //     fontSize: 20,
-//     fontWeight:'bold',
+//     fontWeight: 'bold',
 //     color: '#777',
 //     marginBottom: 20,
-   
 //   },
 //   feedbackContainer: {
 //     width: '100%',
@@ -162,8 +221,7 @@
 //   feedbackText: {
 //     fontSize: 25,
 //     color: '#555',
-//      color:'black',
-//      fontWeight:'bold'
+//     fontWeight: 'bold',
 //   },
 //   feedbackInput: {
 //     height: 40,
@@ -186,9 +244,23 @@
 //     color: '#fff',
 //     fontWeight: 'bold',
 //   },
+//   pickerContainer: {
+//     height: 50,
+//     width: '100%',
+//     marginBottom: 20,
+//     borderColor: 'lightgrey',
+//     borderWidth: 2,
+//     borderRadius: 1,
+//     overflow: 'hidden',
+//   },
+//   picker: {
+//     height: 50,
+//     width: '100%',
+//   },
 // });
 
 // export default Rewards;
+
 import React, { useEffect, useState } from 'react';
 import {
   View,
@@ -198,24 +270,29 @@ import {
   Alert,
   TouchableOpacity,
   TextInput,
-  ActivityIndicator, // Add the ActivityIndicator import
+  ActivityIndicator,
+  ScrollView,
 } from 'react-native';
+import { Picker } from '@react-native-picker/picker'; // Import the Picker
+import { useNavigation } from '@react-navigation/native';
 
-const Rewards = ({ route }) => {
-  const { productId } = route.params || { productId: 22 }; // Default for testing
+const Rewards = () => {
+  const navigation = useNavigation();
+  const [products, setProducts] = useState([]); // State to hold the list of products
+  const [selectedProductId, setSelectedProductId] = useState(null); // State for selected product
   const [product, setProduct] = useState(null);
-  const [rating, setRating] = useState(0); // Initialize rating state here
+  const [rating, setRating] = useState(0);
   const [feedback, setFeedback] = useState('');
+  const [blogPosts, setBlogPosts] = useState([]); // State for blog posts
 
-  const fetchProduct = async () => {
+  // Fetch all products
+  const fetchProducts = async () => {
     try {
       const response = await fetch('http://10.0.2.2:3000/api/products');
       if (response.ok) {
         const data = await response.json();
-        const selectedProduct =
-          data.find(product => product.id === productId) || data[1];
-        setProduct(selectedProduct);
-        // console.log(data);
+        setProducts(data);
+        setSelectedProductId(data[0]?.id); // Set the default selected product
       } else {
         Alert.alert('Error', 'Failed to fetch product data');
       }
@@ -225,42 +302,59 @@ const Rewards = ({ route }) => {
     }
   };
 
-  // Render stars based on the rating value
-  const renderStars = () => {
-    let stars = [];
-    for (let i = 1; i <= 5; i++) {
-      stars.push(
-        <TouchableOpacity key={i} onPress={() => setRating(i)}>
-          <Text
-            style={[styles.star, { color: i <= rating ? '#FFD700' : '#ccc' }]}>
-            ★
-          </Text>
-        </TouchableOpacity>,
-      );
-    }
-    return stars;
-  };
-
-  // Send feedback to backend
-  const sendFeedbackToBackend = async () => {
+  // Fetch product details based on selected product ID
+  const fetchProduct = async (productId) => {
     try {
-      await fetch(`http://10.0.2.2:3000/api/products/${productId}/rate`, { // Correct URL with productId
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          rating,
-          feedback,  // If feedback is necessary to store, send it too
-        }),
-      });
+      const response = await fetch(`http://10.0.2.2:3000/api/products/${productId}`);
+      if (response.ok) {
+        const data = await response.json();
+        setProduct(data);
+      } else {
+        Alert.alert('Error', 'Failed to fetch product data');
+      }
     } catch (error) {
-      console.error('Error submitting feedback:', error);
+      Alert.alert('Error', 'An error occurred while fetching product data');
+      console.error(error);
     }
   };
-  
 
-  // Handle the "Send" button click
+  // Fetch blog posts
+  const fetchBlogPosts = async () => {
+    try {
+      const response = await fetch('http://10.0.2.2:3000/api/blogs');
+      if (response.ok) {
+        const data = await response.json();
+        setBlogPosts(data);
+      } else {
+        Alert.alert('Error', 'Failed to fetch blog data');
+      }
+    } catch (error) {
+      Alert.alert('Error', 'An error occurred while fetching blog data');
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts(); // Fetch products when component mounts
+    fetchBlogPosts(); // Fetch blog posts when component mounts
+  }, []);
+
+  useEffect(() => {
+    if (selectedProductId) {
+      fetchProduct(selectedProductId); // Fetch product details when selected product changes
+    }
+  }, [selectedProductId]);
+
+  // Render stars for rating
+  const renderStars = () => {
+    return Array.from({ length: 5 }, (_, i) => (
+      <TouchableOpacity key={i + 1} onPress={() => setRating(i + 1)}>
+        <Text style={[styles.star, { color: i < rating ? '#FFD700' : '#ccc' }]}>★</Text>
+      </TouchableOpacity>
+    ));
+  };
+
+  // Handle feedback submission
   const handleSendFeedback = async () => {
     if (rating === 0) {
       Alert.alert('Please select a rating');
@@ -271,75 +365,79 @@ const Rewards = ({ route }) => {
       return;
     }
 
-    // Calculate the new rate and numVoted
-    const newRate = product.rate + rating;
-    const newNumVoted = product.numVoted + 1;
-    const averageRating = newRate / newNumVoted;
-
-    // Update the product locally
-    const updatedProduct = {
-      ...product,
-      numVoted: newNumVoted,
-      rate: newRate,
-      averageRating: averageRating.toFixed(1), // Store the average rating rounded to 1 decimal place
+    const feedbackData = {
+      productId: selectedProductId,
+      rating,
+      feedback,
+      tags: product.grind_option || [], // Include product tags
     };
 
-    setProduct(updatedProduct); // Update local product data
+    console.log(feedbackData);
 
-    // Show thank you alert
-    Alert.alert('Thank You', 'Your feedback has been submitted.');
+    try {
+      const response = await fetch('http://10.0.2.2:3000/api/blogs/feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(feedbackData),
+      });
 
-    // Call backend to submit feedback
-    await sendFeedbackToBackend();
+      if (!response.ok) {
+        throw new Error('Failed to submit feedback');
+      }
+
+      const result = await response.json();
+      Alert.alert('Thank You', result.message);
+      navigation.navigate("Blog");
+
+      // Fetch updated blog data
+      await fetchBlogPosts();
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+      Alert.alert('Error', 'An error occurred while submitting feedback');
+    }
   };
-
-  useEffect(() => {
-    fetchProduct(); // Fetch product data when component mounts
-  }, [productId]);
-
-  if (!product) {
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
-    );
-  }
 
   return (
     <View style={styles.container}>
-      {product.image_url && (
-        <Image source={{ uri: product.image_url }} style={styles.image} />
+      <Text style={styles.title}>Product Feedback</Text>
+      <Picker
+        selectedValue={selectedProductId}
+        onValueChange={(itemValue) => setSelectedProductId(itemValue)}
+      >
+        {products.map((product) => (
+          <Picker.Item key={product.id} label={product.name} value={product.id} />
+        ))}
+      </Picker>
+      {product && (
+        <View>
+          <Image source={{ uri: product.image_url }} style={styles.image} />
+          <Text>{product.description}</Text>
+          <Text>Price: ${product.price}</Text>
+          <View style={styles.ratingContainer}>{renderStars()}</View>
+          <TextInput
+            style={styles.feedbackInput}
+            placeholder="Enter your feedback"
+            value={feedback}
+            onChangeText={setFeedback}
+          />
+          <TouchableOpacity onPress={handleSendFeedback} style={styles.submitButton}>
+            <Text style={styles.submitButtonText}>Submit Feedback</Text>
+          </TouchableOpacity>
+        </View>
       )}
-      <Text style={styles.name}>{product.name}</Text>
-
-      <View style={styles.ratingContainer}>
-        {renderStars()} {/* Render the stars */}
-      </View>
-      <Text style={styles.feedbackText}>
-       {rating} Star{rating > 1 ? 's' : ''}
-      </Text>
-
+      {/* <ScrollView>
       <View>
-        <Text style={styles.rate}>
-          Average Rating: {product.averageRating || '0'} ({product.numVoted}{' '}
-          votes)
-        </Text>
+        <Text style={styles.blogTitle}>Blog Posts</Text>
+        {blogPosts.map((blog) => (
+          <View key={blog.id} style={styles.blogPost}>
+            <Text style={styles.blogPostTitle}>{blog.title}</Text>
+            <Text>{blog.script}</Text>
+          </View>
+        ))}
       </View>
-      <View style={styles.feedbackContainer}>
-        <TextInput
-          style={styles.feedbackInput}
-          placeholder="Write feedback here"
-          value={feedback}
-          onChangeText={setFeedback}
-        />
-      </View>
-      {/* "Send" Button */}
-      <TouchableOpacity
-        style={styles.sendButton}
-        onPress={handleSendFeedback}
-        accessibilityLabel="Submit feedback">
-        <Text style={styles.sendButtonText}>Send</Text>
-      </TouchableOpacity>
+      </ScrollView> */}
     </View>
   );
 };
@@ -348,76 +446,54 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    alignItems: 'center',
-    backgroundColor: '#fff',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
   },
   image: {
     width: '100%',
-    height: '100%',
-    maxHeight: 350,
+    height: 200,
     resizeMode: 'cover',
-    borderRadius: 10,
-    marginBottom: 20,
-  },
-  name: {
-    fontSize: 50,
-    fontWeight: 'bold',
-    marginBottom: 10,
-
   },
   ratingContainer: {
     flexDirection: 'row',
-    marginBottom: 20,
+    marginVertical: 10,
   },
   star: {
     fontSize: 30,
     marginHorizontal: 5,
   },
-  rate: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#777',
-    marginBottom: 20,
-  },
-  feedbackContainer: {
-    width: '100%',
-    marginTop: 20,
-  },
-  feedbackText: {
-    fontSize: 25,
-    color: '#555',
-    fontWeight: 'bold',
-    color:'black'
-    
-  },
   feedbackInput: {
-    height: 40,
-    borderColor: '#ccc',
     borderWidth: 1,
-    borderRadius: 5,
-    paddingLeft: 10,
-    marginTop: 10,
-    fontSize: 16,
+    borderColor: '#ccc',
+    padding: 10,
+    marginVertical: 10,
   },
-  sendButton: {
-    alignItems:'center',
-    justifyContent:'center',
-    marginTop: 20,
-    backgroundColor: '#4CAF50',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    height:"100%",
-    maxHeight:60,
-    width:"100%",
-   
+  submitButton: {
+    backgroundColor: '#007BFF',
+    padding: 10,
+    alignItems: 'center',
   },
-  sendButtonText: {
-    fontSize: 18,
+  submitButtonText: {
     color: '#fff',
+    fontWeight: 'bold',
+  },
+  blogTitle: {
+    fontSize: 20,
+    marginVertical: 10,
+  },
+  blogPost: {
+    marginVertical: 10,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+  },
+  blogPostTitle: {
+    fontSize: 18,
     fontWeight: 'bold',
   },
 });
 
-export default Rewards;
 
+export default Rewards;

@@ -25,7 +25,7 @@ const products = [
         "roast_level": 3,
         "image_url": "http://10.0.2.2:3000/images/pic1.png",
         "category": "Drink",
-       "rate":0,
+       	"rate":0,
         "numVoted": 0
     },
     {
@@ -378,7 +378,7 @@ const products = [
         "region": "VietNam",
         "weight": 500,
         "flavor_profile": ["Sweety", "Gas"],
-        "grind_option": ["Original Coca-cola"," No Sugar Coca-cola"],
+        "grind_option": ["Coffee"," No Sugar Coca-cola"],
         "roast_level": 2,
         "image_url": "http://10.0.2.2:3000/images/pic22.png",
          "category": "Beverages",
@@ -440,34 +440,40 @@ const users = [
     }
 ];
 
-const blogs= [
+const blogs = [
     {
-        id: 1,
-        title: 'Espresso Coffee',
+        id: 21,
+        title: 'Pepsi',
         author: 'Duc Nguyen',
         date: 'October 4, 2022',
-        "image_url": "http://10.0.2.2:3000/images/pic4.png",
+        image_url: "http://10.0.2.2:3000/images/pic21.png",
         tags: ['Coffee', 'Espresso', 'Cold brew'],
-        script: 'The coffee is so good! Need to try it.'
-      },
-      {
+        script: 'The coffee is so good! Need to try it.',
+        numRatings: 1, // Khởi tạo số lượng đánh giá
+        averageRating: 3 // Khởi tạo điểm trung bình
+    },
+    {
         id: 2,
-        title: 'Capuchino Coffee',
+        title: 'Cake',
         author: 'Thao Tran',
         date: 'September 3, 2022',
-        "image_url": "http://10.0.2.2:3000/images/pic3.png",
+        image_url: "http://10.0.2.2:3000/images/pic20.png",
         tags: ['Black Coffee', 'Cappuccino'],
-        script: 'Very good for me when I worked 10 hours a day!'
-      },
-      {
+        script: 'Very good for me when I worked 10 hours a day!',
+        numRatings: 1, // Khởi tạo số lượng đánh giá
+        averageRating: 5 // Khởi tạo điểm trung bình
+    },
+    {
         id: 3,
         title: 'Pizza',
         author: 'Vu Nguyen',
         date: 'October 1, 2022',
-        "image_url": "http://10.0.2.2:3000/images/pizza.png",
+        image_url: "http://10.0.2.2:3000/images/pizza.png",
         tags: ['Food'],
-        script: 'Very delicious!'
-      },
+        script: 'Very delicious!',
+        numRatings: 1, // Khởi tạo số lượng đánh giá
+        averageRating: 4 // Khởi tạo điểm trung bình
+    },
 ];
 
 // Orders data
@@ -668,4 +674,50 @@ app.post('/api/products/:id/rate', (req, res) => {
 });
 app.get('/api/products', (req, res) => {
     res.json(products);
+});
+
+// New endpoint to submit feedback for a product
+app.post('/api/blogs/feedback', (req, res) => {
+    const { productId, rating, feedback } = req.body;
+
+    // Validate input
+    if (!productId || rating < 1 || rating > 5 || !feedback) {
+        return res.status(400).json({ error: 'Invalid input' });
+    }
+
+    // Check if the product exists
+    const product = products.find(p => p.id === productId);
+
+    if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+    }
+
+    // Check if the blog entry for the product already exists
+    const existingBlog = blogs.find(blog => blog.id === productId);
+
+    if (existingBlog) {
+        // Update the existing blog entry with new feedback
+        existingBlog.script += `\nRating: ${rating}, Feedback: ${feedback}`;
+
+        // Update the average rating and number of ratings
+        existingBlog.numRatings = (existingBlog.numRatings || 0) + 1; // Increment the number of ratings
+        existingBlog.averageRating = ((existingBlog.averageRating || 0) * (existingBlog.numRatings - 1) + rating) / existingBlog.numRatings; // Calculate new average
+
+        res.status(200).json({ message: 'Feedback added to existing blog entry', blog: existingBlog });
+    } else {
+        // Create a new blog entry with the product name as the title
+        const newBlog = {
+            id: productId,
+            title: product.name, // Use the product's name as the title
+            author: 'Anonymous', // You can modify this to get the actual user
+            date: new Date().toLocaleDateString(),
+            image_url: product.image_url || '', // Use the product's image URL
+            tags: ['Coffee'], // Gán tag mặc định hoặc lấy từ một nguồn khác
+            script: `Rating: ${rating}, Feedback: ${feedback}`,
+            numRatings: 1, // Set initial number of ratings to 1
+            averageRating: rating // Set initial average rating to the first rating
+        };
+        blogs.push(newBlog);
+        res.status(201).json({ message: 'New blog entry created', blog: newBlog });
+    }
 });
